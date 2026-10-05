@@ -1,0 +1,60 @@
+# CONFIGMAP
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: flask-config
+data:
+  DB_HOST: postgres-service
+  DB_PORT: "5432"
+  DB_NAME: taskdb
+  DB_USER: taskuser
+
+---
+
+# SERVICE
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: flask
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 30007
+
+---
+
+# DEPLOYMENT
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+  labels:
+    app.kubernetes.io/name: flask
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: flask
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: flask
+    spec:
+      containers:
+        - name: flask-pod
+          image: app-image:v2
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: flask-config
+            - secretRef:
+                name: flask-secret

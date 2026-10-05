@@ -1,0 +1,43 @@
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Flask files
+instance/
+.webassets-cache
+
+# Logs
+*.log
+logs/
+
+# Test and coverage files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editor and IDE settings
+.vscode/
+.idea/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Kubernetes files containing real secrets
+k8s/*secret.yml
+k8s/*secret.yaml
+
+# Keep safe example Secret templates in GitHub
+!k8s/*secret.example.yml
+!k8s/*secret.example.yaml

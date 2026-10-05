@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskForge | Kubernetes Task Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <main class="app-shell">
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-icon">✓</div>
+                <div>
+                    <h1>TaskForge</h1>
+                    <p>Cloud-native task management</p>
+                </div>
+            </div>
+
+            <div class="status-pill">
+                <span class="status-dot"></span>
+                <span id="api-status">Checking API...</span>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div>
+                <p class="eyebrow">KUBERNETES LEARNING PROJECT</p>
+                <h2>Plan. Build. <span>Deploy.</span></h2>
+                <p class="hero-text">
+                    A clean task dashboard powered by Flask, PostgreSQL,
+                    containers, and Kubernetes.
+                </p>
+            </div>
+
+            <div class="hero-badge">
+                <span class="badge-icon">☸</span>
+                <div>
+                    <strong>Kubernetes Ready</strong>
+                    <small>Flask + PostgreSQL</small>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <div class="stat-icon purple">◷</div>
+                <div>
+                    <p>Total tasks</p>
+                    <h3 id="total-count">0</h3>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon blue">↗</div>
+                <div>
+                    <p>In progress</p>
+                    <h3 id="active-count">0</h3>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon green">✓</div>
+                <div>
+                    <p>Completed</p>
+                    <h3 id="completed-count">0</h3>
+                </div>
+            </article>
+        </section>
+
+        <section class="workspace">
+            <div class="tasks-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">YOUR WORKSPACE</p>
+                        <h2>My tasks</h2>
+                    </div>
+
+                    <button id="refresh-button" class="icon-button" title="Refresh tasks">
+                        ↻
+                    </button>
+                </div>
+
+                <div id="task-list" class="task-list">
+                    <div class="loading-state">
+                        <div class="loader"></div>
+                        <p>Loading your tasks...</p>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="create-panel">
+                <p class="eyebrow">QUICK CREATE</p>
+                <h2>Add a new task</h2>
+                <p class="panel-description">
+                    Small progress every day becomes real DevOps skill.
+                </p>
+
+                <form id="task-form">
+                    <label for="task-title">Task title</label>
+                    <input
+                        id="task-title"
+                        type="text"
+                        maxlength="200"
+                        placeholder="Example: Learn Kubernetes Services"
+                        autocomplete="off"
+                        required
+                    >
+
+                    <button type="submit" class="primary-button">
+                        <span>+</span>
+                        Create task
+                    </button>
+                </form>
+
+                <div class="motivation-card">
+                    <span class="quote-mark">“</span>
+                    <p>Consistency beats intensity. Build, break, learn, repeat.</p>
+                </div>
+            </aside>
+        </section>
+
+        <footer>
+            <span>TaskForge</span>
+            <span class="footer-separator">•</span>
+            <span>Flask + PostgreSQL + Kubernetes</span>
+        </footer>
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
